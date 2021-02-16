@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block title %} Home {% endblock title %}
+
+{% block body %}
+    {% comment %} <div class="jumbotron">
+        <div class="jumbotron-heading">
+        <h1>Welcome To Coding Enthusiast</h1>
+        </div>
+        <div class="jumbotron-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, tempora. Animi, aperiam, beatae nemo sapiente aliquid vitae non ea cupiditate dolores delectus dolorum error dolore ratione harum molestiae corporis? Ex?</p>
+        </div>
+    </div> {% endcomment %}
+     
+    <div class="all-post">
+       <div class="all-post-heading"> 
+            <h3>All Latest Posts</h3>
+        </div>
+           {% for post in page_obj %}
+        <div class="card">
+            <div class="card-title">
+                <h3><a href="{{ post.get_absolute_url }}">{{post.title}}</a></h3>
+                <small>{{post.publish}} by {{post.author}}</small>
+            </div>
+            <div class="card-body">
+                <p>{{post.body |truncatechars:200|linebreaks}}</p>
+            </div>
+        
+        </div>
+            {% endfor %}
+             {% include "blog/pagination.html" with page=all_posts %}
+    </div>
+
+   
+
+
+  
+{% endblock body %}

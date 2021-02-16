@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% block title %} {{post.title}} {% endblock title %}
+
+{% block body %}
+
+<div class="view-post">
+    <div class="view-post-heading">
+    <h1>{{post.title}}</h1>
+        
+		<small>Published {{post.publish}} by {{post.author}}</small>
+    
+    </div>
+
+	<div class="view-post-body">
+		<p>{{post.body|linebreaks}}</p>
+		
+	</div>
+	<div id="share-post">
+			<a id="share_this_post" href="{% url "post_share" post.id%}">
+			Share this post
+			</a>
+	</div>
+
+	<div class="comment-count">
+		{%	with comments.count	as	total_comments	%}
+			<h2>
+					{{	total_comments	}}	Comment{{total_comments|pluralize }}
+			</h2>
+		{%	endwith	%}
+	</div>
+
+	<div class="display-comment">
+		{%	for	comment	in	comments %}
+			<div class="comment">
+				<p	class="info">
+					Comment {{ forloop.counter }} by {{ comment.name }} {{	comment.created	}}
+				</p>
+				<p class="comment-body">{{ comment.body|linebreaks }}</p>
+			</div>
+		{%	empty	%}
+				<p>There are no comments yet.</p>
+		{%	endfor	%}
+	</div>
+
+	<div class="add-comment">
+		{%	if	new_comment	%}
+			<h2>Your comment has been added.</h2>
+		{%	else	%}
+			<h2>Add	a	new	comment</h2>
+			<form	action="."	method="post">
+					{{	comment_form.as_p	}}
+					{%	csrf_token	%}
+					<p><input id="add-comment-btn"type="submit"	value="Add comment"></p>
+			</form>
+		{%	endif	%}
+	</div>
+        
+</div>
+
+
+
+{% endblock body %}

@@ -1,0 +1,393 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="{% static "style.css" %}">
+    <title>{% block title %}{% endblock title %}</title>
+    
+
+    <style>
+    *{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+#navbar{
+    display: flex;
+    background-color: #283747;
+    color: white;
+    line-height: 35px;
+}
+
+.navbar-list{    
+    width: 31%;
+}
+
+.navbar-list ul{
+    display: flex;
+    float: right;
+    overflow: hidden;
+}
+
+.navbar-list ul li{
+    list-style: none;
+    float: left;
+}
+
+.navbar-list ul li a{
+    float: right;
+    text-decoration: none;
+    display: block;
+    padding: 20px 20px;
+    color: white;
+}
+
+.navbar-list ul li a:hover{
+background-color: #34495E;
+}
+
+.mainlogo{
+        background-color: #2980B9;
+        padding: 35px 0px;
+
+}
+
+.mainlogo h3{
+    font-size: 2.5rem;
+    color: white;
+    padding-bottom: 7px;
+}
+.mainlogo p{
+    color: white;
+padding-bottom: 20px;
+font-style: italic;
+}
+.container{
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.jumbotron{
+    text-align: center;
+    margin: 23px 0px;
+    background: whitesmoke;
+    padding: 61px 0px;
+
+}
+
+{% comment %} .jumbotron-heading{
+    margin: 10px 0px;
+} {% endcomment %}
+.all-post{
+    background: white;
+    padding: 28px 21px;
+  
+}
+.all-post-heading{
+    background-color: whitesmoke;
+    text-align: center;
+    {% comment %} margin-top: 25px; {% endcomment %}
+}
+.all-post-heading h3{
+    font-size: 20px;
+    padding: 10px 3px;
+}
+
+.card{
+    margin: 30px 0px;
+}
+.card-title{
+    padding: 10px 0px;
+
+}
+
+.card-title h3{
+    padding: 5px 0px;
+    font-size: 25px;
+}
+.card-title h3 a{
+    text-decoration: none;
+    color: #2874A6;
+}
+
+.card-title small{
+    font-style: italic;
+    color: gray;
+    font-size: 15px;
+}
+
+.card-body p{
+    font-size: 20px;
+    color: #34495E;
+}
+.pagination{
+        margin: 41px 0px;
+
+}
+
+.pagination a{
+    border: 1px solid #049ed1;
+    color: #049ed1;
+    background: white;
+    padding: 4px;
+    border-radius: 4px;
+    margin: 0px 2px;
+    text-decoration: none
+}
+.pagination a:hover{
+    background: #049ed1;
+    color:white;
+}
+
+.view-post{
+  width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background: white;
+    padding: 16px 100px;
+
+}
+
+.view-post-heading{
+    margin: 20px 0px;
+}
+.view-post-heading h1{
+    font-size: 33px;
+    margin-bottom: 10px;
+     color: #2874A6;
+}
+.view-post-heading small{
+    font-style: italic;
+    font-size: 20px;
+    color: gray;   
+}
+.view-post-body p{
+    font-size: 20px;
+}
+
+
+#share-post{
+    display:block;
+    margin: 30px 0px;
+    
+}
+#share-post a{
+        border: 1px solid;
+        padding: 5px;
+        text-decoration: none;
+        color: #049ed1;
+    
+}
+#share-post a:hover{
+    background: #049ed1;
+    color:white;
+}
+
+#share_post_title{
+    margin: 30px 0px;
+}
+
+#share_post_form p label{
+    word-break: break-all;
+    display: block;
+    font: message-box;
+}
+
+
+#share_post_form p input{
+    
+        margin: 14px 0px;
+        width: 34%;
+        padding: 12px 0px;
+        background: #e9e9e9;
+        border: none;
+
+}
+#share_post_form textarea{
+    width: 34%;
+    border: none;
+    margin: 11px 0px;
+    background: #e9e9e9;
+}
+
+#share_submit_btn{
+        
+    padding: 11px 10px;
+    background: #09aaeb;
+    color: white;
+    border: none;
+    margin: 9px 0px;
+    cursor: pointer;
+
+}
+
+#share_submit_btn:hover{
+    background: lightskyblue;
+}
+
+.comment-count h2{
+
+    background: aliceblue;
+    padding: 16px 20px;
+}
+
+.comment{
+
+    background: #EAEDED;
+    padding: 20px;
+    margin: 16px 0px;
+}
+
+
+.comment .info{
+    font-weight: 600;
+    margin: 10px 0px;
+    font-size: smaller;
+    color: darkolivegreen;
+}
+
+.comment .comment-body{
+    color: #323030;
+}
+
+.add-comment h2{
+    background: aliceblue;
+    padding: 20px;
+    margin: 20px 0px;
+
+}
+
+.add-comment form p label{
+    word-break: break-all;
+    display: block;
+    font: message-box;
+}
+
+.add-comment form p input{
+    margin: 14px 0px;
+    width: 100%;
+    padding: 12px 0px;
+    background: #F8F9F9;
+   border: 1px solid;
+
+}
+
+.add-comment form p textarea{
+    width: 100%;
+    border: none;
+    margin: 11px 0px;
+    background: #F8F9F9;
+   border: 1px solid;
+}
+
+#add-comment-btn{
+        
+    padding: 11px 10px;
+    color: white;
+    margin: 9px 0px;
+    cursor: pointer;
+        border: 1px solid;
+        text-decoration: none;
+        color: #049ed1;
+
+}
+
+#add-comment-btn:hover{
+    background: #049ed1;
+    color: white;
+}
+
+.contactBody{
+align-items: center;
+    justify-content: center;
+    margin: auto;
+    display: block;
+    width: 100%;
+    background: white;
+    padding: 8px 243px;
+}
+
+.contactHeading{
+    background: aliceblue;
+    padding: 15px;
+    text-align: center;
+    margin: 15px 0px;
+}
+.contactForm form p label{
+    word-break: break-all;
+}
+
+.contactForm form p input{
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0px;
+    background: #efefef;
+
+}
+
+.contactForm form p textarea{
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0px;
+    background: #efefef;
+
+}
+
+.footer{
+   background: #212F3C;
+    color: white;
+    padding: 28px 0px;
+    {% comment %} margin-top: 30px; {% endcomment %}
+}
+.footer h3{
+    margin-bottom: 10px;
+}
+.footer p{
+    font-style: italic;
+}
+
+body{
+   background:  #F8F9F9;
+}
+   
+    </style>
+ 
+</head>
+
+<body>
+    <div id="navbar">
+        <div class="navbar-list ">
+            <ul class="">
+                <li><a href="/">Home</a></li>
+                <li><a href="/admin" target="_blank">Admin</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mainlogo">
+            <div class="container">
+            <h3>Coding Enthusiast</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio eaque doloribus maiores porro cupiditate. Quasi?</p>
+            </div>
+    </div>
+
+      <div class="container">
+          {% block body %} {% endblock body %}
+      </div>
+
+    <div class="footer">
+        <div class="container">
+            <h3>&copy 2021 Coding Enthusiast</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, architecto sequi? Eveniet commodi molestiae assumenda.</p>
+        </div>
+    </div>
+
+</body>
+</html>
